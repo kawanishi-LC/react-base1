@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
-export const ThredList = () => {
+export const Home = () => {
 
   const [threds, setThreds] = useState([]);
 
   useEffect(() => {
     fetch(`https://railway.bulletinboard.techtrain.dev/threads?offset=1`)
-      .then((res) => res.json())
+      .then((res) => res.json())  //格納データは配列
       .then((data) => {
         console.log(data);
         setThreds(data)
@@ -15,13 +15,13 @@ export const ThredList = () => {
 
   return (
     <>
-      <div className="thredList">
+      <div className="contents">
         <div className="container">
           <h3>新着スレッド</h3>
           <ul>
             {threds.map((threds) => {
               return (              
-                <li key={threds.id}>{threds.title}</li>
+                <li className="listthreds" key={threds.id}>{threds.title}</li>
               );
             })}
           </ul>
@@ -31,4 +31,4 @@ export const ThredList = () => {
   );
 };
 
-export default ThredList;
+export default Home;
