@@ -1,18 +1,24 @@
 import { useState ,useEffect} from "react";
+import { useLocation } from "react-router-dom";
 
 export const Thred = () => {
 
+  const location = useLocation();
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch(
-      `https://railway.bulletinboard.techtrain.dev/threads/57784d6a-e92c-4a6b-81a8-c1b68c0aabff/posts?offset=1`)
-      .then((res) => res.json())  //格納データはオブジェクト
-      .then((data) => {
-        console.log(data.threadId);
-        console.log(data.posts);
-        setPosts(data.posts);
-      });
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://railway.bulletinboard.techtrain.dev/threads/${threds.id}/posts?offset=0`
+        );
+        setPosts(response.data); //格納データはオブジェクト
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
   }, []);
 
   return (

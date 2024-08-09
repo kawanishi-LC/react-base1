@@ -4,25 +4,25 @@ import { useNavigate } from "react-router-dom";
 
 export const CreateThred = () => {
 
+  const navigate = useNavigate();
   const [title,setTitle] = useState("スレッドタイトル")
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();  //作成押下後の再読み込みを止める
-    axios
-      .post("https://railway.bulletinboard.techtrain.dev/threads", {
-        title: title
-      })
-      .then((res) => {
-        console.log(res.data);          
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    setTitle("スレッドタイトル");
-  };
+		try {
+    	const response = await axios.post(
+        "https://railway.bulletinboard.techtrain.dev/threads",
+        {
+          title: title,
+        }
+      );
+      console.log(response.data)
+      navigate("/");
+    } catch (error) {
+			console.log(error);
+		}
+	};
 
-  const navigate = useNavigate();
-  
   const onClickTop = () => {
     navigate("/");
   };
