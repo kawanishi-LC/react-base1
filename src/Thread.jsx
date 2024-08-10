@@ -54,18 +54,7 @@ export const Thread = () => {
     <>
       <div className="contents">
         <div className="container">
-          <h3>投稿一覧</h3>
-          <ul>
-            {threadPosts.map((post) => {
-              return (
-                <li className="listposts" key={post.id}>
-                  {post.post}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-        <div className="container2">
+          <h3>コメント投稿</h3>
           <form onSubmit={handleSubmit}>
             <input
               className="inputpost"
@@ -76,6 +65,18 @@ export const Thread = () => {
             />
             <input className="inputcreate" type="submit" value="投稿" />
           </form>
+        </div>
+        <div className="container">
+          <h3>投稿一覧</h3>
+          <ul>
+            {threadPosts.map((post) => {
+              return (
+                <li className="listposts" key={post.id}>
+                  {post.post}
+                </li>
+              );
+            })}
+          </ul>
         </div>
         <div className="navi">
           <button onClick={onClickTop}>Topに戻る</button>
