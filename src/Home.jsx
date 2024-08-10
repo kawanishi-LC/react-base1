@@ -1,19 +1,22 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const Home = () => {
 
   const navigate = useNavigate();
-  const [threds, setThreds] = useState([]);
+  const [threads, setThreads] = useState([]);
 
   useEffect(() => {
 	  const fetchData = async () => {
 		  try {
-				const response = await axios.get(`https://railway.bulletinboard.techtrain.dev/threads?offset=0`);			
-			  setThreds(response.data);  //格納データは配列
-        console.log(response.data)
-		  } catch (error) {
+        const response = await axios.get(
+          `https://railway.bulletinboard.techtrain.dev/threads?offset=0`
+        );
+        console.log(response.data); //レスポンスデータは配列
+        setThreads(response.data);
+
+      } catch (error) {
 			  console.log(error);
 		  }
 	  };
@@ -26,14 +29,14 @@ export const Home = () => {
         <div className="container">
           <h3>新着スレッド</h3>
           <ul>
-            {threds.map((threds) => {
+            {threads.map((thread) => {
               return (
                 <li
                   className="listthreds"
-                  key={threds.id}
-                  onClick={() => navigate(`/threads/${threds.id}`)}
+                  key={thread.id}
+                  onClick={() => navigate(`/threads/${thread.id}`)}
                 >
-                  {threds.title}
+                  {thread.title}
                 </li>
               );
             })}

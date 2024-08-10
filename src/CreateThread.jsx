@@ -1,8 +1,8 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-export const CreateThred = () => {
+export const CreateThread = () => {
 
   const navigate = useNavigate();
   const [title,setTitle] = useState("スレッドタイトル")
@@ -18,6 +18,7 @@ export const CreateThred = () => {
       );
       console.log(response.data)
       navigate("/");
+      
     } catch (error) {
 			console.log(error);
 		}
@@ -51,4 +52,4 @@ export const CreateThred = () => {
   );
 };
 
-export default CreateThred;
+export default CreateThread;
