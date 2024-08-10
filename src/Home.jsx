@@ -6,12 +6,13 @@ export const Home = () => {
 
   const navigate = useNavigate();
   const [threads, setThreads] = useState([]);
+  const [pageIndex, setPageIndex] = useState(0);
 
   useEffect(() => {
 	  const fetchData = async () => {
 		  try {
         const response = await axios.get(
-          `https://railway.bulletinboard.techtrain.dev/threads?offset=0`
+          `https://railway.bulletinboard.techtrain.dev/threads?offset=${pageIndex}`
         );
         console.log(response.data); //レスポンスデータは配列
         setThreads(response.data);
@@ -21,7 +22,7 @@ export const Home = () => {
 		  }
 	  };
 	  fetchData();
-  }, []);
+  }, [pageIndex]);
 
   return (
     <>
@@ -41,6 +42,9 @@ export const Home = () => {
               );
             })}
           </ul>
+          <button className="pagebtn" onClick={() => setPageIndex(pageIndex - 10)}>前の10件</button>
+          <button className="pagebtn" onClick={() => setPageIndex(pageIndex + 10)}>次の10件</button>
+          <button className="pagebtn" onClick={() => setPageIndex(0)}>最初に戻る</button>
         </div>
       </div>
     </>

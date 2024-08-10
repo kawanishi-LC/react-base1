@@ -53,6 +53,16 @@ ul{
     padding: 0.5em;
 }
 
+.pagebtn{
+    display: inline-block;
+    text-decoration: underline;
+    align-items: center;
+    width: 100px;
+    height: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;        
+}
+
 .listposts{
     list-style-type: none!important;/*ポチ消す*/
     padding-bottom: 10px;
