@@ -33,7 +33,7 @@ export const Home = () => {
             {threads.map((thread) => {
               return (
                 <li
-                  className="listthreds"
+                  className="listthreads"
                   key={thread.id}
                   onClick={() => navigate(`/threads/${thread.id}`)}
                 >
@@ -42,9 +42,11 @@ export const Home = () => {
               );
             })}
           </ul>
-          <button className="pagebtn" onClick={() => setPageIndex(pageIndex - 10)}>前の10件</button>
-          <button className="pagebtn" onClick={() => setPageIndex(pageIndex + 10)}>次の10件</button>
-          <button className="pagebtn" onClick={() => setPageIndex(0)}>最初に戻る</button>
+          <div className="navi">
+            <button className="pagebtn" onClick={() => setPageIndex(pageIndex - 10)}>前の10件</button>
+            <button className="pagebtn" onClick={() => setPageIndex(pageIndex + 10)}>次の10件</button>
+            <button className="pagebtn" onClick={() => setPageIndex(0)}>最初に戻る</button>
+          </div>
         </div>
       </div>
     </>
